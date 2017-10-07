@@ -4,7 +4,9 @@ var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock"];
 var guessWord;
 var lettersUsed = [];
 var winCntr = 0;
-var guessesRemaining = 14;
+const totalGuesses = 10;
+var guessesRemaining = totalGuesses;
+
 // .split --will split the string into an array using what ever seperator you specify, in this case '' blank, so everything is seperated
 var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 console.log(alphabet);
@@ -48,7 +50,7 @@ function checkLetter(event) {
         winDiv.innerHTML = (" Number of Wins: " + winCntr);
         numGuessesDiv.innerHTML = ("Guesses Remaining: " + guessesRemaining);
 
-        if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === 14)) {
+        if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
             guessesRemaining--;
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
         }
@@ -60,11 +62,7 @@ function checkLetter(event) {
 
 
 
-    } else {
-        alert("No More Lives! - Click Reset to start a new Game! The ANswer was: " + randomWord);
-
-
-    }
+    } 
 
 }
 
@@ -92,6 +90,10 @@ function IsLetterInRandomWord(letter, checkIndex) {
 
         IsLetterInRandomWord(letter, checkIndex + 1);
         return true;
+    } else if (guessesRemaining == 0){
+        showGuess();
+        rightDiv.innerHTML = ("You have lost...The winning word was: " + randomWord);
+        init();
     }
 
 
@@ -111,7 +113,7 @@ function showGuess() {
     if (guessWord.join("") == randomWord) {
         winCntr++;
         winDiv.innerHTML = (" Number of Wins: " + winCntr);
-        guessesRemaining = 14;
+        guessesRemaining = totalGuesses;
         numGuessesDiv.innerHTML = (" Guesses Remaining: " + guessesRemaining);
         rightDiv.innerHTML = ("Well Done...The winning word was: " + randomWord);
         // alert("you won!! " + winCntr + "guessesRemaining = " + guessesRemaining);
@@ -125,7 +127,7 @@ function showGuess() {
 function resetButton() {
     console.log("resetting");
     // triesCount = 0;
-    guessesRemaining = 14;
+    guessesRemaining = totalGuesses;
     document.getElementById("guess").innerHTML = "";
     document.getElementById("rightDiv").innerHTML = "";
 
@@ -165,7 +167,7 @@ function init() {
     guessWord = [];
     lettersUsed = [];
     letter = "";
-    guessesRemaining = 14;
+    guessesRemaining = totalGuesses;
     randomWord = pickword();
 
     console.log("chosen random word is " + randomWord);

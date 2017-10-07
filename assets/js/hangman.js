@@ -51,7 +51,7 @@ function checkLetter(event) {
         numGuessesDiv.innerHTML = ("Guesses Remaining: " + guessesRemaining);
 
         if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
-            guessesRemaining--;
+            
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
         }
         lettersUsed.push(letter);
@@ -94,6 +94,10 @@ function IsLetterInRandomWord(letter, checkIndex) {
         showGuess();
         rightDiv.innerHTML = ("You have lost...The winning word was: " + randomWord);
         init();
+    } else {
+        if (checkIndex == 0) {
+            guessesRemaining--;
+        }
     }
 
 

@@ -54,12 +54,12 @@ function checkLetter(event) {
             
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
         }
-        lettersUsed.push(letter);
+        
 
 
         IsLetterInRandomWord(letter, 0);
         showGuess();
-
+        lettersUsed.push(letter);
 
 
     } 
@@ -90,12 +90,16 @@ function IsLetterInRandomWord(letter, checkIndex) {
 
         IsLetterInRandomWord(letter, checkIndex + 1);
         return true;
-    } else if (guessesRemaining == 0){
+    } else if (guessesRemaining == 1 && checkIndex == 0){
         showGuess();
         rightDiv.innerHTML = ("You have lost...The winning word was: " + randomWord);
         init();
-    } else {
-        if (checkIndex == 0) {
+    } 
+    else if (checkIndex == 0) {
+        if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
+            
+            console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
+            lettersUsed.push(letter);
             guessesRemaining--;
         }
     }

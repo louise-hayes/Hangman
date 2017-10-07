@@ -2,20 +2,27 @@
 
 var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock"];
 var guessWord;
+var lettersUsed = [];
 var winCntr = 0;
+var guessesRemaining = 14;
 // .split --will split the string into an array using what ever seperator you specify, in this case '' blank, so everything is seperated
 var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 console.log(alphabet);
 
 // set variable counter - the number of tries
-var triesCount = 0;
+// var triesCount = 0;
 // note to self for later numTriesDiv.innerHTML = "text to go in div NoOfTries"
 // can also put h1 in here and change innerHTML to insertAdjacentHTML
 var numTriesDiv = document.getElementById("noOfTries");
 var guessDiv = document.getElementById("guess");
-var randomWord;
+var winDiv = document.getElementById("winDiv");
 var alphabetDiv = document.getElementById("alphabet");
+var numGuessesDiv = document.getElementById("numGuessesDiv");
+var rightDiv = document.getElementById("rightDiv");
 
+var letter = "";
+var hasWon = 0;
+var randomWord;
 
 //Functions *****************************************
 
@@ -28,24 +35,36 @@ function pickword() {
 
 // return event - the letter!
 function checkLetter(event) {
-    // event.srcElement.id requested to the letter
-    var letter = event.currentTarget.id;
-    console.log(letter);
-    var posIndex = 0;
-    var letterElement = document.getElementById(event.srcElement.id);
-    letterElement.style.color = "red";
-    IsLetterInRandomWord(letter, 0);
-    showGuess();
-    triesCount++;
-    numTriesDiv.innerHTML = ("Number of Tries: " + triesCount);
-    var newDiv = document.createElement("winDiv");
-    newDiv.innerHTML = (" Number of Wins: " + winCntr);
-    numTriesDiv.appendChild(newDiv);
+    if (guessesRemaining !== 0) {
+        rightDiv.innerHTML = ("");
+
+        // event.srcElement.id requested to the letter
+        letter = event.currentTarget.id;
+        console.log(letter);
+        var posIndex = 0;
+        var letterElement = document.getElementById(event.srcElement.id);
+        letterElement.style.color = "red";
+        // guessesRemaining--;
+        winDiv.innerHTML = (" Number of Wins: " + winCntr);
+        numGuessesDiv.innerHTML = ("Guesses Remaining: " + guessesRemaining);
+
+        if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === 14)) {
+            guessesRemaining--;
+            console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
+        }
+        lettersUsed.push(letter);
+
+
+        IsLetterInRandomWord(letter, 0);
+        showGuess();
 
 
 
-    // showguess to browser in div guess
+    } else {
+        alert("No More Lives! - Click Reset to start a new Game! The ANswer was: " + randomWord);
 
+
+    }
 
 }
 
@@ -67,12 +86,16 @@ function IsLetterInRandomWord(letter, checkIndex) {
         checkIndex = randomWord.indexOf(letter, checkIndex);
         console.log("letter " + "checkIndex " + checkIndex);
         guessWord[checkIndex] = letter;
+
         //check if it is in the word multiple times in a recursive function 
 
 
         IsLetterInRandomWord(letter, checkIndex + 1);
         return true;
     }
+
+
+
     return false;
 
 }
@@ -83,14 +106,16 @@ function showGuess() {
     for (var i = 0; i < guessWord.length; i++) {
         guessString = guessString + guessWord[i] + ",";
     }
-    guessDiv.innerHTML = ("Word : " + guessString);
-
-
+    guessDiv.innerHTML = ("Word : " + guessString.substring(0, guessString.length - 1));
+    numGuessesDiv.innerHTML = (" Guesses Remaining: " + guessesRemaining);
     if (guessWord.join("") == randomWord) {
         winCntr++;
-
-        //alert("Hurray you won!!");
-
+        winDiv.innerHTML = (" Number of Wins: " + winCntr);
+        guessesRemaining = 14;
+        numGuessesDiv.innerHTML = (" Guesses Remaining: " + guessesRemaining);
+        rightDiv.innerHTML = ("Well Done...The winning word was: " + randomWord);
+        // alert("you won!! " + winCntr + "guessesRemaining = " + guessesRemaining);
+        init();
 
     }
 
@@ -98,12 +123,13 @@ function showGuess() {
 
 // called when reset button clicked
 function resetButton() {
-
     console.log("resetting");
-    triesCount=0;
-    
-    init();
+    // triesCount = 0;
+    guessesRemaining = 14;
+    document.getElementById("guess").innerHTML = "";
+    document.getElementById("rightDiv").innerHTML = "";
 
+    init();
 }
 
 
@@ -111,18 +137,17 @@ function resetButton() {
 
 // Begin //
 function init() {
-    // initialise alphabetDiv
-    // same as document.getElementById("goy").innerHTML = "";
-    // alphabetDiv.innerHTML = "";
-    document.getElementById("alphabet").innerHTML = "";
-    // initialise all Div's
+
     document.getElementById("guess").innerHTML = "";
-    document.getElementById("noOfTries").innerHTML = "";
-    numTriesDiv.innerHTML = ("Number of Tries: " + triesCount);
-    var newDiv = document.createElement("winDiv");
-    newDiv.innerHTML = (" Number of Wins: " + winCntr);
-    numTriesDiv.appendChild(newDiv);
-    
+
+    document.getElementById("alphabet").innerHTML = "";
+    document.getElementById("winDiv").innerHTML = "";
+    document.getElementById("numGuessesDiv").innerHTML = "";
+    // document.getElementById("rightDiv").innerHTML = "";
+    // rightDiv.innerHTML = ("");
+    winDiv.innerHTML = (" Number of Wins: " + winCntr);
+    numGuessesDiv.innerHTML = (" Guesses Remaining: " + guessesRemaining);
+
     for (var i = 0; i < alphabet.length; i++) {
         // creating anchor element which is a link for each letter in alphabet  
         var aTag = document.createElement('a');
@@ -136,18 +161,14 @@ function init() {
         aTag.addEventListener("click", checkLetter, false);
         //adding the link to the <div id="alphabet">  so it will appear in correct div in browser
         alphabetDiv.appendChild(aTag);
-
     }
     guessWord = [];
-    triesCount = 0;
+    lettersUsed = [];
+    letter = "";
+    guessesRemaining = 14;
     randomWord = pickword();
 
-
-    // find a random word from wordsArray and returns randomWord
-
-
     console.log("chosen random word is " + randomWord);
-
     // populate guessWord with dashes 
     for (var i = 0; i < randomWord.length; i++) {
         guessWord.push('_');
@@ -156,4 +177,5 @@ function init() {
     console.log("guessWOrd is " + guessWord);
     showGuess();
 }
+
 init();

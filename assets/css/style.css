@@ -1,4 +1,4 @@
-body{
+∫body{
     color:grey;
     background-color: yellow;
 }
@@ -52,3 +52,8 @@ a:hover{
 }
 
 
+#rightDiv {
+    
+    font-size: 30px;
+    color: black;
+}

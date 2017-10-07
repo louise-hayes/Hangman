@@ -1,6 +1,6 @@
 // variables ***************************************
 
-var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock"];
+var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock", "oisin"];
 var guessWord;
 var lettersUsed = [];
 var winCntr = 0;
@@ -126,11 +126,7 @@ function showGuess() {
 // called when reset button clicked
 function resetButton() {
     console.log("resetting");
-    // triesCount = 0;
-    guessesRemaining = totalGuesses;
-    document.getElementById("guess").innerHTML = "";
-    document.getElementById("rightDiv").innerHTML = "";
-
+    
     init();
 }
 
@@ -139,7 +135,13 @@ function resetButton() {
 
 // Begin //
 function init() {
+    guessWord = [];
+    lettersUsed = [];
+    letter = "";
+    guessesRemaining = totalGuesses;
+    randomWord = pickword();
 
+    console.log("chosen random word is " + randomWord);
     document.getElementById("guess").innerHTML = "";
 
     document.getElementById("alphabet").innerHTML = "";
@@ -164,12 +166,7 @@ function init() {
         //adding the link to the <div id="alphabet">  so it will appear in correct div in browser
         alphabetDiv.appendChild(aTag);
     }
-    guessWord = [];
-    lettersUsed = [];
-    letter = "";
-    guessesRemaining = totalGuesses;
-    randomWord = pickword();
-
+    
     console.log("chosen random word is " + randomWord);
     // populate guessWord with dashes 
     for (var i = 0; i < randomWord.length; i++) {

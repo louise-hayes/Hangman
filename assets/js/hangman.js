@@ -4,7 +4,7 @@ var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock", "oisin"];
 var guessWord;
 var lettersUsed = [];
 var winCntr = 0;
-const totalGuesses = 10;
+const totalGuesses = 14;
 var guessesRemaining = totalGuesses;
 
 // .split --will split the string into an array using what ever seperator you specify, in this case '' blank, so everything is seperated

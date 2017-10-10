@@ -8,6 +8,20 @@
   <!-- <link rel="stylesheet" type="text/css" src="assets/css/style.css"> -->
 
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 
   <title>Hangman</title>
 
@@ -15,25 +29,21 @@
 
 <body>
 
-  <h1> Louise's Hang with the Man Game!</h1>
-
-  <p>Pick a random letter form this alphabet to start</p>
-
-  <div id="alphabet">
-
-
+  <div class="jumbotron">
+    <h2> Louise's Hang with the Man Game!</h2>
   </div>
-
+  </main>
+  <div id="container">
+    <div id="animate"></div>
+  </div>
   <div id="guess"></div>
-  <div id="noOfTries"> </div>
-  <div id="numGuessesDiv"></div>
-  <div id="winDiv"></div>
-
-  <div id="resetBut">
-    <button type="button" onclick="resetButton()">Reset</button>
-
+  <aside>
+    <div id="numGuessesDiv"></div>
+    <div id="winDiv"></div>
+  </aside>
+  <button type="button" onclick="resetButton()" class="btn">Reset</button>
+  <div id="alphabet"></div>
   </div>
-  <p> The button above restarts the game without affecting your wins score!</p>
   <div id="rightDiv"></div>
   <script src="assets/js/hangman.js"></script>
 </body>

@@ -4,7 +4,7 @@ var wordsArray = ["picture", "sunny", "adam", "ben", "codersrock", "oisin"];
 var guessWord;
 var lettersUsed = [];
 var winCntr = 0;
-const totalGuesses = 10;
+const totalGuesses = 14;
 var guessesRemaining = totalGuesses;
 
 // .split --will split the string into an array using what ever seperator you specify, in this case '' blank, so everything is seperated
@@ -93,7 +93,6 @@ function IsLetterInRandomWord(letter, checkIndex) {
     } else if (guessesRemaining == 1 && checkIndex == 0) {
         showGuess();
         rightDiv.innerHTML = ("You have lost...The winning word was: " + randomWord);
-            
         init();
     } else if (checkIndex == 0) {
         if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
@@ -101,11 +100,6 @@ function IsLetterInRandomWord(letter, checkIndex) {
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
             lettersUsed.push(letter);
             guessesRemaining--;
-            startMove();
-            var win = false;
-            audioPlay(win);
-            console.log("moving the animation becuase player lost a life" + guessesRemaining)
-        
         }
     }
 
@@ -132,7 +126,7 @@ function showGuess() {
         // alert("you won!! " + winCntr + "guessesRemaining = " + guessesRemaining);
         init();
 
-    } 
+    }
 
 }
 
@@ -153,7 +147,6 @@ function init() {
     letter = "";
     guessesRemaining = totalGuesses;
     randomWord = pickword();
-    stopMove();
 
     console.log("chosen random word is " + randomWord);
     document.getElementById("guess").innerHTML = "";
@@ -190,56 +183,6 @@ function init() {
     console.log("guessWOrd is " + guessWord);
     showGuess();
     // rightDiv.innerHTML = ("");
-}
-
-
-
-function startMove() {
-    var elem = document.getElementById("animate");
-    var pos = 0;
-    var id = setInterval(frame, 5);
-
-    function frame() {
-        if (pos == 350) {
-            clearInterval(id);
-        } else {
-            pos++;
-            elem.style.top = pos + 'px';
-            elem.style.left =  '40px';
-            elem.innerText = "life lost " + (totalGuesses - guessesRemaining);
-        }
-    }
-}
-
-function stopMove() {
-    var elem = document.getElementById("animate");
-    var pos = 0;
-    // var id = setInterval(frame, 5);
-
-    // function frame() {
-        // if (pos == 150) {
-            // clearInterval(id);
-        // } else {
-            // pos++;
-            elem.style.top = pos + 'px';
-            elem.style.left = '40px';
-            elem.innerText = " ";
-        
-    
-}
-
-function audioPlay(win) {
-audioElement = document.createElement('audio');
-if (win){
-audioElement.setAttribute('src', 'assets/images/loose.wav');
-}
-else {
-audioElement.setAttribute('src', 'assets/images/loose.wav');
-}
-audioElement.load()
-audioElement.addEventListener("load", function() { 
-  audioElement.play(); 
-}, true);
 }
 
 init();

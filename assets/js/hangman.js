@@ -51,10 +51,10 @@ function checkLetter(event) {
         numGuessesDiv.innerHTML = ("Guesses Remaining: " + guessesRemaining);
 
         if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
-            
+
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
         }
-        
+
 
 
         IsLetterInRandomWord(letter, 0);
@@ -62,7 +62,7 @@ function checkLetter(event) {
         lettersUsed.push(letter);
 
 
-    } 
+    }
 
 }
 
@@ -90,14 +90,13 @@ function IsLetterInRandomWord(letter, checkIndex) {
 
         IsLetterInRandomWord(letter, checkIndex + 1);
         return true;
-    } else if (guessesRemaining == 1 && checkIndex == 0){
+    } else if (guessesRemaining == 1 && checkIndex == 0) {
         showGuess();
         rightDiv.innerHTML = ("You have lost...The winning word was: " + randomWord);
         init();
-    } 
-    else if (checkIndex == 0) {
+    } else if (checkIndex == 0) {
         if (lettersUsed.indexOf(letter) == -1 || (guessesRemaining === totalGuesses)) {
-            
+
             console.log("letter not typed already or first time" + lettersUsed.indexOf(letter));
             lettersUsed.push(letter);
             guessesRemaining--;
@@ -134,7 +133,7 @@ function showGuess() {
 // called when reset button clicked
 function resetButton() {
     console.log("resetting");
-    
+
     init();
 }
 
@@ -174,7 +173,7 @@ function init() {
         //adding the link to the <div id="alphabet">  so it will appear in correct div in browser
         alphabetDiv.appendChild(aTag);
     }
-    
+
     console.log("chosen random word is " + randomWord);
     // populate guessWord with dashes 
     for (var i = 0; i < randomWord.length; i++) {
@@ -183,6 +182,7 @@ function init() {
 
     console.log("guessWOrd is " + guessWord);
     showGuess();
+    // rightDiv.innerHTML = ("");
 }
 
 init();

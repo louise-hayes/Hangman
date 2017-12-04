@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+Files in the App:
 
-You can use the [editor on GitHub](https://github.com/louise-hayes/Hangman/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+index.html
+assets/css/style.css
+assets/js/hangman.js
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+test it out using the following word 'codersrock'.
 
-### Markdown
+## Welcome to Hangman - a Web App Game built using dynamically updated HTML powered by JavaScript.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The app randomly picks a word from an array, and the user has to guess which word the app chose. 
+The user is presented with the following information:
 
-```markdown
-Syntax highlighted code block
+Wins: (# of times the user has guessed the word correctly)
+Losses: (# of times the user has failed to guess the word correctly after exhausting all guesses)
+Guesses Remaining: (# of guesses left. This will update)
+Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
+When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
+When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins).
+Press any key to get started!
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+If the word is madonna, it will display like this when the game starts: _ _ _ _ _ _ _.
+As the user guesses the correct letters, they are revealed: m a d o _  _ a.
+After the user wins/loses the game automatically chooses another word and makes the user play it.
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/louise-hayes/Hangman/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

@@ -1,16 +1,20 @@
-Files in the App:
 
-index.html
-assets/css/style.css
-assets/js/hangman.js
-
-test it out using the following word 'codersrock'.
 
 ## Welcome to Hangman - a Web App Game built using dynamically updated HTML powered by JavaScript.
 
 The app randomly picks a word from an array, and the user has to guess which word the app chose. 
 The user is presented with the following information:
 
+## Files in the App:
+
+index.html
+assets/css/style.css
+assets/js/hangman.js
+
+Launch the App: https://louise-hayes.github.io/Hangman/
+Git: https://github.com/louise-hayes/Hangman/
+
+test it out using the following word 'codersrock'.
 Wins: (# of times the user has guessed the word correctly)
 Losses: (# of times the user has failed to guess the word correctly after exhausting all guesses)
 Guesses Remaining: (# of guesses left. This will update)

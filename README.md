@@ -5,6 +5,8 @@
 The app randomly picks a word from an array, and the user has to guess which word the app chose. 
 The user is presented with the following information:
 
+![screen shot 2019-03-06 at 20 13 25](https://user-images.githubusercontent.com/29293985/53925024-6fdda680-404c-11e9-8f21-ff8135fc7913.png)
+
 ## Files in the App:
 
 index.html
@@ -13,6 +15,7 @@ assets/js/hangman.js
 
 Launch the App: https://louise-hayes.github.io/Hangman/
 Git: https://github.com/louise-hayes/Hangman/
+
 
 test it out using the following word 'codersrock'.
 Wins: (# of times the user has guessed the word correctly)

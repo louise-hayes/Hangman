@@ -169,7 +169,7 @@ function init() {
 
     for (i = 0; i < alphabet.length; i++) {
         // creating anchor element which is a link for each letter in alphabet  
-        const aTag = document.createElement('a');
+        let aTag = document.createElement('a');
         //linking to itself
         aTag.setAttribute('href', "#");
         //displaying the link in the browser

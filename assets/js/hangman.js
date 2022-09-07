@@ -148,6 +148,7 @@ function resetButton() {
 
 // Begin //
 function init() {
+    let i;
     guessWord = [];
     lettersUsed = [];
     letter = "";
@@ -166,9 +167,9 @@ function init() {
     winDiv.innerHTML = (" Number of Wins: " + winCntr);
     numGuessesDiv.innerHTML = (" Guesses Remaining: " + guessesRemaining);
 
-    for (var i = 0; i < alphabet.length; i++) {
+    for (i = 0; i < alphabet.length; i++) {
         // creating anchor element which is a link for each letter in alphabet  
-        var aTag = document.createElement('a');
+        let aTag = document.createElement('a');
         //linking to itself
         aTag.setAttribute('href', "#");
         //displaying the link in the browser
@@ -183,7 +184,7 @@ function init() {
 
     console.log("chosen random word is " + randomWord);
     // populate guessWord with dashes 
-    for (var i = 0; i < randomWord.length; i++) {
+    for (i = 0; i < randomWord.length; i++) {
         guessWord.push('_');
     }
 
@@ -195,9 +196,9 @@ function init() {
 
 
 function startMove() {
-    var elem = document.getElementById("animate");
-    var pos = 0;
-    var id = setInterval(frame, 5);
+    let elem = document.getElementById("animate");
+    let pos = 0;
+    const id = setInterval(frame, 5);
 
     function frame() {
         if (pos == 350) {
@@ -212,7 +213,7 @@ function startMove() {
 }
 
 function stopMove() {
-    var elem = document.getElementById("animate");
+    let elem = document.getElementById("animate");
     var pos = 0;
     // var id = setInterval(frame, 5);
 
